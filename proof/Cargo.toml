@@ -1,0 +1,21 @@
+[package]
+name = "proof"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serde_json = "1.0"
+serde = { version = "1.0", features = ["derive"] }
+lambda_runtime = "0.8.2"
+tokio = "1.33.0"
+log = "0.4.20"
+simple_logger = "4.3.0"
+bellman = "0.14.0"
+sha2 = "0.10.0"
+hex = "0.4.3"
+rand = "0.8.5"
+subtle = "2.5.0" 
+ff = "0.13.0"
+bls12_381 = "0.8.0"
+num-bigint = "0.4.4"
+num-traits = "0.2.17"
