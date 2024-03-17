@@ -34,7 +34,6 @@ fn sha256_to_scalar(data: &[u8]) -> Result<Scalar, &'static str> {
         Err("Failed to convert to scalar")
     }
 }
-
 pub struct EmitlyCircuit {
     docker_sha_num: Scalar,
     json_input_num: Scalar,
