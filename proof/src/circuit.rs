@@ -6,7 +6,9 @@ use num_bigint::{BigInt, Sign};
 use num_traits::Num;
 use rand::rngs::OsRng;
 use sha2::{Digest, Sha256};
+
 use std::convert::TryInto;
+
 const BLS12_381_SCALAR_FIELD_ORDER: &str =
     "52435875175126190479447740508185965837690552500527637822603658699938581184512";
 
