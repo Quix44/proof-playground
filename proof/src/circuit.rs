@@ -4,11 +4,14 @@ use bls12_381::Bls12;
 use bls12_381::Scalar;
 use num_bigint::{BigInt, Sign};
 use num_traits::Num;
+
 use rand::rngs::OsRng;
 use sha2::{Digest, Sha256};
 use std::convert::TryInto;
 
 // Doco
+use std::convert::TryInto;
+
 const BLS12_381_SCALAR_FIELD_ORDER: &str =
     "52435875175126190479447740508185965837690552500527637822603658699938581184512";
 
@@ -36,7 +39,6 @@ fn sha256_to_scalar(data: &[u8]) -> Result<Scalar, &'static str> {
         Err("Failed to convert to scalar")
     }
 }
-
 pub struct EmitlyCircuit {
     docker_sha_num: Scalar,
     json_input_num: Scalar,
