@@ -8,6 +8,6 @@ Executing code in Docker containers and writing a proof to any chain that can be
 
 ![idea](idea.png)
 
-## This change makes the code more pog
+## Concept
 
-test321
+This is some data about context

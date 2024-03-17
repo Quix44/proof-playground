@@ -1,14 +1,14 @@
 use bellman::groth16::{create_random_proof, generate_random_parameters};
 use bellman::{Circuit, ConstraintSystem, SynthesisError};
-use sha2::{Digest, Sha256};
 use bls12_381::Bls12;
+use bls12_381::Scalar;
 use num_bigint::{BigInt, Sign};
-use bls12_381::{Scalar};
-use std::convert::TryInto;
 use num_traits::Num;
 use rand::rngs::OsRng;
-
-const BLS12_381_SCALAR_FIELD_ORDER: &str = "52435875175126190479447740508185965837690552500527637822603658699938581184512";
+use sha2::{Digest, Sha256};
+use std::convert::TryInto;
+const BLS12_381_SCALAR_FIELD_ORDER: &str =
+    "52435875175126190479447740508185965837690552500527637822603658699938581184512";
 
 fn sha256_to_scalar(data: &[u8]) -> Result<Scalar, &'static str> {
     let mut hasher = Sha256::new();
@@ -19,7 +19,9 @@ fn sha256_to_scalar(data: &[u8]) -> Result<Scalar, &'static str> {
     let prime_order = BigInt::from_str_radix(BLS12_381_SCALAR_FIELD_ORDER, 10).unwrap();
     let scalar_value = hash_bigint % prime_order;
 
-    let scalar_bytes: [u8; 32] = scalar_value.to_bytes_be().1
+    let scalar_bytes: [u8; 32] = scalar_value
+        .to_bytes_be()
+        .1
         .try_into()
         .unwrap_or_else(|_| [0u8; 32]);
 
@@ -78,10 +80,8 @@ impl Circuit<Scalar> for EmitlyCircuit {
 
 // Generate zk-SNARK proof
 pub fn generate_proof(docker_sha: &str, json_input: &str) -> Result<String, String> {
-    let docker_sha_num = sha256_to_scalar(docker_sha.as_bytes())
-        .map_err(|e| e.to_string())?;
-    let json_input_num = sha256_to_scalar(json_input.as_bytes())
-        .map_err(|e| e.to_string())?;
+    let docker_sha_num = sha256_to_scalar(docker_sha.as_bytes()).map_err(|e| e.to_string())?;
+    let json_input_num = sha256_to_scalar(json_input.as_bytes()).map_err(|e| e.to_string())?;
 
     let expected_sum = docker_sha_num + json_input_num;
 
@@ -108,7 +108,6 @@ pub fn generate_proof(docker_sha: &str, json_input: &str) -> Result<String, Stri
 
     Ok(format!("{:?}", proof))
 }
-
 
 #[cfg(test)]
 mod tests {
@@ -137,7 +136,7 @@ mod tests {
             Ok(proof) => {
                 assert!(!proof.is_empty(), "Proof should not be empty");
                 println!("Generated proof: {}", proof);
-            },
+            }
             Err(e) => panic!("Failed to generate proof: {}", e),
         }
     }
