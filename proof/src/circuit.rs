@@ -4,6 +4,7 @@ use bls12_381::Bls12;
 use bls12_381::Scalar;
 use num_bigint::{BigInt, Sign};
 use num_traits::Num;
+
 use rand::rngs::OsRng;
 use sha2::{Digest, Sha256};
 
