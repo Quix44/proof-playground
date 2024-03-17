@@ -7,7 +7,9 @@ use num_traits::Num;
 
 use rand::rngs::OsRng;
 use sha2::{Digest, Sha256};
+use std::convert::TryInto;
 
+// Doco
 use std::convert::TryInto;
 
 const BLS12_381_SCALAR_FIELD_ORDER: &str =
